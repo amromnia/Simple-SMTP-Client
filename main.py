@@ -1,9 +1,24 @@
 import base64
 import socket
 import ssl
+# import tkinter as tk
+# from tkinter import simpledialog
 
-msg = "\r\nI love computer networks!"
+# root = tk.Tk()
+
+# root.title("Networks Project")
+# root.withdraw()
+
+# # the input dialog
+# rec_email = simpledialog.askstring(title="Test",prompt="Enter receipient email: ") 
+# tmp = simpledialog.askstring(title="Test",prompt="Enter message")
+print("SMTP Server starting...\r\n")
+rec_email=input("Enter the receipient E-mail: ")
+tmp=input("Message: ")
+
+msg = "\r\n"+tmp if tmp else "I love computer Networks!"
 endMsg = "\r\n.\r\n"
+#rec_email = "asd.sadek@gmail.com"
 
 # Choose a mail server (e.g. Google mail server) and call it mailserver
 mailServer = "smtp.office365.com"
@@ -68,7 +83,7 @@ if recv[:3] != '250':
     print('250 reply not received from server.')
 
 # Send RCPT TO command and print server response.
-RCPTCommand = 'RCPT TO:amr2000225@miuegypt.edu.eg\r\n'
+RCPTCommand = 'RCPT TO:'+rec_email+'\r\n'
 secureSocket.send(RCPTCommand.encode())
 recv = secureSocket.recv(1024).decode()
 print(recv)
